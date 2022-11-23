@@ -7,5 +7,16 @@
 <template>
   <div>HomeMain</div>
 </template>
-<script setup></script>
+<script setup>
+  import { onMounted } from 'vue';
+  import { getData } from '@/service/api/index';
+  function getTest() {
+    getData().then((res) => {
+      console.log(res);
+    });
+  }
+  onMounted(()=>{
+    getTest()
+  })
+</script>
 <style lang="scss" scoped></style>

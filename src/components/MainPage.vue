@@ -6,7 +6,7 @@
 -->
 <template>
   <div class="main-page">
-    <Layout v-if="mode === 'vertical'">
+    <Layout v-if="mode === 'horizontal'">
       <template #header><div class="header">header</div></template>
       <template #sider>
         <!-- props值传递 -->
