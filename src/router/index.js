@@ -16,7 +16,7 @@ const routes = [
     redirect: '/Home/index',
     meta: {
       icon: 'el-icon-user',
-      title: '用户中心'
+      title: '首页'
     },
     children: [
       {
@@ -24,7 +24,8 @@ const routes = [
         name: 'HomeIndex',
         component: () => import('@/views/Home/HomeIndex.vue'),
         meta: {
-          title: 'HomeIndex'
+          title: 'HomeIndex',
+          isHidden: true
         }
       },
       {

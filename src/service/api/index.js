@@ -1,8 +1,8 @@
-import { httpXhr } from '../xhr/index';
+import { request } from '../request/index';
 
 // 请求本地文件
 function getData() {
-  return httpXhr.get('./test.json');
+  return request.get('./user.json');
 }
 
 export { getData };

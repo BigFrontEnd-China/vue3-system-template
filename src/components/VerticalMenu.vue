@@ -21,6 +21,7 @@
         <a-menu-item
           v-for="childMenu in menu.children"
           :key="childMenu.path"
+          v-show="!childMenu.isHidden"
           @click="routeChange(childMenu)"
           >{{ childMenu.meta.title }}</a-menu-item
         >
@@ -46,7 +47,7 @@
   }
   function onCollapse(type) {
     const content = type === 'responsive' ? '触发响应式收缩' : '点击触发收缩';
-    
+
     Message.info({
       content,
       duration: 2000

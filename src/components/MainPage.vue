@@ -6,17 +6,16 @@
 -->
 <template>
   <div class="main-page">
-    <Layout v-if="mode === 'horizontal'">
+    <Layout v-if="mode === 'vertical'">
       <template #header><div class="header">header</div></template>
-      <template #sider>
-        <!-- props值传递 -->
-        <!--  <MenuList defaultOpenMenu="/Test" defaultOpenValue="/Test/index"></MenuList> -->
-        <VerticalMenu></VerticalMenu
+      <template #sider
+        ><VerticalMenu hasChildren="false"></VerticalMenu
       ></template>
     </Layout>
     <Layout v-else>
       <template #header
-        ><div class="header-horizontal"><HorizontalMenu></HorizontalMenu></div
+        ><div class="header-horizontal">
+          <HorizontalMenu :hasChildren="false"></HorizontalMenu></div
       ></template>
     </Layout>
   </div>
@@ -25,7 +24,7 @@
   import Layout from '@/components/Layout.vue';
   import VerticalMenu from '@/components/VerticalMenu.vue';
   import HorizontalMenu from '@/components/HorizontalMenu.vue';
-  const mode = 'vertical';
+  const mode = 'horizontal';
 </script>
 <style lang="scss" scoped>
   .main-page {

@@ -10,4 +10,7 @@
     text-align: center;
     color: #2c3e50;
   }
+  #nprogress .bar {
+    background: #165dff !important; //自定义颜色
+  }
 </style>
