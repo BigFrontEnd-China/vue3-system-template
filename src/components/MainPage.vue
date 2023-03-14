@@ -9,13 +9,13 @@
     <Layout v-if="mode === 'vertical'">
       <template #header><div class="header">header</div></template>
       <template #sider
-        ><VerticalMenu hasChildren="false"></VerticalMenu
+        ><VerticalMenu></VerticalMenu
       ></template>
     </Layout>
     <Layout v-else>
       <template #header
         ><div class="header-horizontal">
-          <HorizontalMenu :hasChildren="false"></HorizontalMenu></div
+          <HorizontalMenu></HorizontalMenu></div
       ></template>
     </Layout>
   </div>
@@ -24,7 +24,7 @@
   import Layout from '@/components/Layout.vue';
   import VerticalMenu from '@/components/VerticalMenu.vue';
   import HorizontalMenu from '@/components/HorizontalMenu.vue';
-  const mode = 'horizontal';
+  const mode = 'vertical';
 </script>
 <style lang="scss" scoped>
   .main-page {

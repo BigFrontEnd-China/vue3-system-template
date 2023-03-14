@@ -8,50 +8,51 @@
   <div class="menu-list">
     <a-menu
       v-model:open-keys="openKeys"
-      :accordion="true"
-      :style="{ width: '200px', height: '100%' }"
+      :style="{ width: '212px', height: '100%' }"
       v-model:selected-keys="selectedKey"
-      show-collapse-button
-      breakpoint="xl"
-      @collapse="onCollapse"
     >
-      <a-sub-menu v-for="menu in routes" :key="menu.path">
-        <template #icon><icon-apps></icon-apps></template>
-        <template #title>{{ menu.meta.title }}</template>
+      <template v-for="menu in routes" :key="menu.path">
+        <a-sub-menu :key="menu.path" v-if="!menu.meta.onlyShowChild">
+          <template #icon><icon-apps></icon-apps></template>
+          <template #title>{{ menu.meta.title }}</template>
+          <a-menu-item
+            v-for="childMenu in menu.children"
+            :key="childMenu.path"
+            v-show="!childMenu.isHidden"
+            @click="routeChange(childMenu)"
+          >
+            <template #icon><icon-apps></icon-apps></template>
+            {{ childMenu.meta.title }}</a-menu-item
+          >
+        </a-sub-menu>
         <a-menu-item
+          v-else
           v-for="childMenu in menu.children"
           :key="childMenu.path"
           v-show="!childMenu.isHidden"
           @click="routeChange(childMenu)"
-          >{{ childMenu.meta.title }}</a-menu-item
         >
-      </a-sub-menu>
+          <template #icon><icon-apps></icon-apps></template>
+          {{ childMenu.meta.title }}
+        </a-menu-item>
+      </template>
     </a-menu>
   </div>
 </template>
 <script setup>
   import { IconApps } from '@arco-design/web-vue/es/icon';
-  import { Message } from '@arco-design/web-vue';
   import { useRouter } from 'vue-router';
   import { ref, onMounted } from 'vue';
-
   const openKeys = ref([]);
   const selectedKey = ref([]);
   const router = useRouter();
-  const routes = router.options.routes.filter((route) => {
+  let routes = [];
+  routes = router.options.routes.filter((route) => {
     return !route.isHidden;
   });
-  function routeChange(childMenu) {
-    selectedKey.value = [childMenu.path];
-    router.push({ name: childMenu.name });
-  }
-  function onCollapse(type) {
-    const content = type === 'responsive' ? '触发响应式收缩' : '点击触发收缩';
-
-    Message.info({
-      content,
-      duration: 2000
-    });
+  function routeChange(menu) {
+    selectedKey.value = [menu.path];
+    router.push({ name: menu.name });
   }
 
   onMounted(() => {
@@ -73,6 +74,6 @@
   .menu-list {
     box-sizing: border-box;
     width: 100%;
-    height: 100%;
+    height: calc(100% - 172px);
   }
 </style>

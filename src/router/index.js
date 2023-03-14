@@ -1,6 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
 import MainPage from '@/components/MainPage.vue';
-
 import NProgress from 'nprogress'; // progress bar
 import 'nprogress/nprogress.css';
 NProgress.configure({
@@ -16,7 +15,8 @@ const routes = [
     redirect: '/Home/index',
     meta: {
       icon: 'el-icon-user',
-      title: '首页'
+      title: '首页',
+      onlyShowChild: true
     },
     children: [
       {
