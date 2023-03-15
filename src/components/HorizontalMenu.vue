@@ -72,7 +72,7 @@
     }
   });
 </script>
-<style lang="scss" scoped>
+<style lang="less" scoped>
   .menu-list {
     box-sizing: border-box;
     width: 100%;

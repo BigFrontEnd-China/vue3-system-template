@@ -8,9 +8,7 @@
   <div class="main-page">
     <Layout v-if="mode === 'vertical'">
       <template #header><div class="header">header</div></template>
-      <template #sider
-        ><VerticalMenu></VerticalMenu
-      ></template>
+      <template #sider><VerticalMenu></VerticalMenu></template>
     </Layout>
     <Layout v-else>
       <template #header
@@ -26,7 +24,7 @@
   import HorizontalMenu from '@/components/HorizontalMenu.vue';
   const mode = 'vertical';
 </script>
-<style lang="scss" scoped>
+<style lang="less" scoped>
   .main-page {
     width: 100%;
     height: 100%;
