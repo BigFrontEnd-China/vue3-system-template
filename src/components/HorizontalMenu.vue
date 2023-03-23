@@ -10,8 +10,8 @@
       <template v-for="menu in routes" :key="menu.path">
         <a-sub-menu
           :key="menu.path"
-          v-if="!menu.meta.onlyShowChild"
           @click="routeChange(menu, 'root')"
+          v-if="!menu.meta.onlyShowChild"
           v-show="!menu.meta.isHidden"
         >
           <template #title>{{ menu.meta.title }}</template>
@@ -21,7 +21,7 @@
           <a-menu-item
             v-for="childMenu in menu.children"
             :key="childMenu.path"
-            v-show="!childMenu.isHidden"
+            v-show="!childMenu.meta.isHidden"
             @click="routeChange(childMenu)"
             >{{ childMenu.meta.title }}</a-menu-item
           >

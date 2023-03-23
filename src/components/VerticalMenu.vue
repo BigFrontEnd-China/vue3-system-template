@@ -22,7 +22,7 @@
           <a-menu-item
             v-for="childMenu in menu.children"
             :key="childMenu.path"
-            v-show="!childMenu.isHidden"
+            v-show="!childMenu.meta.isHidden"
             @click="routeChange(childMenu)"
           >
             <template #icon><i :class="[childMenu.meta.icon]"></i></template>

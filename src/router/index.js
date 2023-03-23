@@ -57,7 +57,8 @@ const routes = [
         component: () => import('@/views/Test/TestIndex.vue'),
         meta: {
           title: '测试',
-          icon: 'icon iconfont icon-jishufuwu'
+          icon: 'icon iconfont icon-jishufuwu',
+          isHidden: true
         }
       },
       {
@@ -78,6 +79,7 @@ if (process.env.NODE_ENV === 'development') {
     name: 'SvgView',
     meta: {
       title: 'SvgView',
+      onlyShowChild: true,
       isHidden: true
     },
     component: () => import('@/views/SvgView/index.vue')
