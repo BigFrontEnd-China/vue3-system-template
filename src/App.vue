@@ -11,6 +11,6 @@
     color: #2c3e50;
   }
   #nprogress .bar {
-    background: #165dff !important; //自定义颜色
+    background: rgb(var(--primary-6)) !important; //自定义颜色
   }
 </style>

@@ -6,7 +6,7 @@
 -->
 <template>
   <div class="main-page">
-    <Layout v-if="mode === 'vertical'">
+    <Layout v-if="false">
       <template #header><div class="header">header</div></template>
       <template #sider><VerticalMenu></VerticalMenu></template>
     </Layout>
@@ -22,7 +22,6 @@
   import Layout from '@/components/Layout.vue';
   import VerticalMenu from '@/components/VerticalMenu.vue';
   import HorizontalMenu from '@/components/HorizontalMenu.vue';
-  const mode = 'vertical';
 </script>
 <style lang="less" scoped>
   .main-page {

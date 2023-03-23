@@ -5,8 +5,9 @@ import store from './store';
 import ArcoVue from '@arco-design/web-vue';
 import '@/styles/common.less';
 import '@arco-design/web-vue/dist/arco.css';
-
+import svgIcon from './components/svgIcons';
 const app = createApp(App);
 app.use(ArcoVue);
+app.use(svgIcon);
 app.use(store);
 app.use(router).mount('#app');

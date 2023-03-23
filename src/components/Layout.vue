@@ -29,9 +29,13 @@
     height: 100%;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
     .main {
       flex: 1;
       display: flex;
+      .arco-layout-content {
+        padding: 20px;
+      }
     }
   }
 </style>

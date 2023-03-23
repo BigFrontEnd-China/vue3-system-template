@@ -5,7 +5,16 @@
 *@UpdateTime: ''
 -->
 <template>
-  <div>HomeIndex</div>
+  <div>
+    <a-button type="primary" @click="handleRedirect()">GO HomeMain</a-button>
+  </div>
 </template>
-<script setup></script>
+<script setup>
+  import router from '@/router';
+  const handleRedirect = () => {
+    router.push({
+      name: 'HomeMain'
+    });
+  };
+</script>
 <style lang="less" scoped></style>

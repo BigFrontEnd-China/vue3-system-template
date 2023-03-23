@@ -5,18 +5,24 @@
 *@UpdateTime: ''
 -->
 <template>
-  <div>HomeMain</div>
+  <div>
+    <a-button type="primary" @click="handleRedirect()">GO HomeIndex</a-button>
+  </div>
 </template>
 <script setup>
   import { onMounted } from 'vue';
   import { getData } from '@/service/api/index';
+  import router from '@/router';
+  const handleRedirect = () => {
+    router.go(-1);
+  };
   function getTest() {
     getData().then((res) => {
       console.log(res);
     });
   }
-  onMounted(()=>{
-    getTest()
-  })
+  onMounted(() => {
+    getTest();
+  });
 </script>
 <style lang="less" scoped></style>

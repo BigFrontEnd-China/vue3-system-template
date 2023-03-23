@@ -14,7 +14,7 @@ const routes = [
     component: MainPage,
     redirect: '/Home/index',
     meta: {
-      icon: 'el-icon-user',
+      icon: 'icon iconfont icon-cangchucangku',
       title: '首页',
       onlyShowChild: true
     },
@@ -24,16 +24,19 @@ const routes = [
         name: 'HomeIndex',
         component: () => import('@/views/Home/HomeIndex.vue'),
         meta: {
-          title: 'HomeIndex',
-          isHidden: true
+          title: '首页',
+          icon: 'icon iconfont icon-dicengjiagou'
         }
       },
       {
-        path: '/Home/main',
+        path: '/Home/index/main',
         name: 'HomeMain',
         component: () => import('@/views/Home/HomeMain.vue'),
         meta: {
-          title: 'HomeMain'
+          title: '详情',
+          icon: 'icon iconfont icon-cangchucangku',
+          isActiveParent: true,
+          isHidden: true
         }
       }
     ]
@@ -44,8 +47,8 @@ const routes = [
     component: MainPage,
     redirect: '/Test/index',
     meta: {
-      icon: 'el-icon-user',
-      title: 'Test'
+      icon: 'icon iconfont icon-gongchang',
+      title: '测试'
     },
     children: [
       {
@@ -53,7 +56,8 @@ const routes = [
         name: 'TestIndex',
         component: () => import('@/views/Test/TestIndex.vue'),
         meta: {
-          title: 'TestIndex'
+          title: '测试',
+          icon: 'icon iconfont icon-jishufuwu'
         }
       },
       {
@@ -61,13 +65,24 @@ const routes = [
         name: 'TestMain',
         component: () => import('@/views/Test/TestMain.vue'),
         meta: {
-          title: 'TestMain'
+          title: '测试1',
+          icon: 'icon iconfont icon-dingdan'
         }
       }
     ]
   }
 ];
-
+if (process.env.NODE_ENV === 'development') {
+  routes.push({
+    path: '/SvgView',
+    name: 'SvgView',
+    meta: {
+      title: 'SvgView',
+      isHidden: true
+    },
+    component: () => import('@/views/SvgView/index.vue')
+  });
+}
 const router = createRouter({
   history: createWebHashHistory(),
   routes
