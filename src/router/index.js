@@ -2,6 +2,8 @@ import { createRouter, createWebHashHistory } from 'vue-router';
 import MainPage from '@/components/MainPage.vue';
 import NProgress from 'nprogress'; // progress bar
 import 'nprogress/nprogress.css';
+import { getToken } from '@/tools/cache';
+
 NProgress.configure({
   showSpinner: false
 });
@@ -90,8 +92,14 @@ const router = createRouter({
   routes
 });
 
-router.beforeEach(() => {
-  NProgress.start();
+router.beforeEach((to, from, next) => {
+  if (!getToken()) {
+    // 跳转到登录
+    next();
+  } else {
+    next();
+    NProgress.start();
+  }
 });
 router.afterEach(() => {
   NProgress.done();

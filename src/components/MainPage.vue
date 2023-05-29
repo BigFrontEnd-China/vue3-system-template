@@ -6,7 +6,7 @@
 -->
 <template>
   <div class="main-page">
-    <Layout v-if="false">
+    <Layout v-if="true">
       <template #header><div class="header">header</div></template>
       <template #sider><VerticalMenu></VerticalMenu></template>
     </Layout>

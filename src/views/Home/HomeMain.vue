@@ -11,18 +11,10 @@
 </template>
 <script setup>
   import { onMounted } from 'vue';
-  import { getData } from '@/service/api/index';
   import router from '@/router';
   const handleRedirect = () => {
     router.go(-1);
   };
-  function getTest() {
-    getData().then((res) => {
-      console.log(res);
-    });
-  }
-  onMounted(() => {
-    getTest();
-  });
+  onMounted(() => {});
 </script>
 <style lang="less" scoped></style>

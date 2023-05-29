@@ -1,8 +1,25 @@
 import { request } from '../request/index';
+const baseUrl = process.env.VUE_APP_BASE_API;
 
-// 请求本地文件
-function getData() {
-  return request.get('./user.json');
-}
-
-export { getData };
+export default {
+  addObject: (data) => {
+    return request({ method: 'POST', url: `${baseUrl}/v1.0/xxx`, data: data });
+  },
+  updateObject: (data) => {
+    return request({ method: 'POST', url: `${baseUrl}/v1.0/xxx`, data: data });
+  },
+  delObject: (params) => {
+    return request({
+      method: 'DELETE',
+      url: `${baseUrl}/v1.0/xxx`,
+      params: params
+    });
+  },
+  getxxxList: (params) => {
+    return request({
+      method: 'GET',
+      url: `${baseUrl}/v1.0/xxx`,
+      params: params
+    });
+  }
+};

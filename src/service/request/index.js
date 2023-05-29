@@ -9,12 +9,13 @@ import qs from 'qs';
 
 //服务请求公共配置
 const request = axios.create({
-  baseURL: '/',
-  timeout: 1000
+  baseURL: '',
+  timeout: 5000,
+  withCredentials: true
 });
 
 // 添加请求拦截器
-axios.interceptors.request.use(
+request.interceptors.request.use(
   (config) => {
     // 如果开启 token 认证
     // const token = localStorage.getItem('token');
@@ -40,7 +41,7 @@ axios.interceptors.request.use(
 );
 
 // 添加响应拦截器
-axios.interceptors.response.use(
+request.interceptors.response.use(
   (res) => {
     let data = res.data;
     // 处理自己的业务逻辑，比如判断 token 是否过期等等
@@ -58,6 +59,7 @@ axios.interceptors.response.use(
           message = '参数不正确！';
           break;
         case 401:
+          // 无权限跳转登录
           message = '您未登录，或者登录已经超时，请先登录！';
           break;
         case 403:
