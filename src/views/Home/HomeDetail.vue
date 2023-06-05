@@ -6,7 +6,8 @@
 -->
 <template>
   <div>
-    <a-button type="primary" @click="handleRedirect()">GO HomeIndex</a-button>
+    <h2>这里是详情页！！！</h2>
+    <a-button type="primary" @click="handleRedirect()">回主页</a-button>
   </div>
 </template>
 <script setup>

@@ -4,35 +4,23 @@
  *@CreateTime: 2023年03月13日 09:52:50
  *@UpdateTime:
  **/
-import axios from 'axios';
-import qs from 'qs';
 
+import axios from 'axios';
+// import qs from 'qs';
+import { getToken } from '@/tools/cache';
 //服务请求公共配置
 const request = axios.create({
   baseURL: '',
   timeout: 5000,
   withCredentials: true
 });
-
 // 添加请求拦截器
 request.interceptors.request.use(
   (config) => {
-    // 如果开启 token 认证
-    // const token = localStorage.getItem('token');
-    // if (token !== null) {
-    //   config.headers['Authorization'] = localStorage.getItem('token'); // 请求头携带 token
-    // }
-    // 设置请求头
-    if (!config.headers['content-type']) {
-      // 如果没有设置请求头
-      if (config.method === 'post') {
-        config.headers['content-type'] = 'application/x-www-form-urlencoded'; // post 请求
-        config.data = qs.stringify(config.data); // 序列化,比如表单数据
-      } else {
-        config.headers['content-type'] = 'application/json'; // 默认类型
-      }
+    const token = getToken();
+    if (token !== null) {
+      config.headers['token'] = token; // 请求头携带 token
     }
-    console.log('请求配置', config);
     return config;
   },
   (error) => {
@@ -43,10 +31,16 @@ request.interceptors.request.use(
 // 添加响应拦截器
 request.interceptors.response.use(
   (res) => {
-    let data = res.data;
-    // 处理自己的业务逻辑，比如判断 token 是否过期等等
-    // 代码块
-    return data;
+    if (res.data.code === 401) {
+      //TODO跳转到登录
+    } else {
+      let data = res.data;
+      // 处理自己的业务逻辑，比如判断 token 是否过期等等
+      // 代码块
+      // blob类型返回res
+      if (data instanceof Blob) return res;
+      else return data;
+    }
   },
   (error) => {
     let message = '';
@@ -59,7 +53,7 @@ request.interceptors.response.use(
           message = '参数不正确！';
           break;
         case 401:
-          // 无权限跳转登录
+          //TODO跳转到登录
           message = '您未登录，或者登录已经超时，请先登录！';
           break;
         case 403:
@@ -101,4 +95,5 @@ request.interceptors.response.use(
   }
 );
 
-export { request };
+const CancelToken = axios.CancelToken;
+export { request, CancelToken };

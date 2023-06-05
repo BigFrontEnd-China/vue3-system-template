@@ -7,7 +7,13 @@ import { getToken } from '@/tools/cache';
 NProgress.configure({
   showSpinner: false
 });
-
+/**
+ * 路由配置说明
+ * isHidden 不显示该路由
+ * onlyShowChild 设置子路由为一级路由
+ * isActiveParent 子路由的详情打开，是否激活父级路由选中效果；
+ * 详情路由必须在主路由path全场后面追加path名称。例：主路由ptah：/Home/index，详情/Home/index/detail
+ */
 const routes = [
   { path: '/', isHidden: true, redirect: '/Home/index' },
   {
@@ -18,7 +24,7 @@ const routes = [
     meta: {
       icon: 'icon iconfont icon-cangchucangku',
       title: '首页',
-      onlyShowChild: true
+      onlyShowChild: false
     },
     children: [
       {
@@ -26,14 +32,14 @@ const routes = [
         name: 'HomeIndex',
         component: () => import('@/views/Home/HomeIndex.vue'),
         meta: {
-          title: '首页',
+          title: '首页子菜单',
           icon: 'icon iconfont icon-dicengjiagou'
         }
       },
       {
-        path: '/Home/index/main',
+        path: '/Home/index/detail',
         name: 'HomeMain',
-        component: () => import('@/views/Home/HomeMain.vue'),
+        component: () => import('@/views/Home/HomeDetail.vue'),
         meta: {
           title: '详情',
           icon: 'icon iconfont icon-cangchucangku',
@@ -97,6 +103,7 @@ router.beforeEach((to, from, next) => {
     // 跳转到登录
     next();
   } else {
+    //token实效跳转到登录
     next();
     NProgress.start();
   }

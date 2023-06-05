@@ -6,6 +6,7 @@
 -->
 <template>
   <div class="main-page">
+    <!-- 设置水平或者垂直菜单布局，应用到项目当中直接删除另一种Layout；不需要增加条件判断 -->
     <Layout v-if="true">
       <template #header><div class="header">header</div></template>
       <template #sider><VerticalMenu></VerticalMenu></template>

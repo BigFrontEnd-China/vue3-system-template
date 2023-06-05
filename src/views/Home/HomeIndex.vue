@@ -6,12 +6,18 @@
 -->
 <template>
   <div>
-    <a-button type="primary" @click="handleRedirect()">GO HomeMain</a-button>
+    <h3>{{ $filters.formatDate(new Date().getTime()) }}</h3>
+    <h3>{{ $filters.formatDate(new Date().getTime(), 'YYYY-MM-DD') }}</h3>
+    <h3>{{ $filters.formatDate(new Date().getTime(), 'YYYY-MM') }}</h3>
+    <h3>{{ $filters.formatDate(new Date().getTime(), 'YYYY年MM月') }}</h3>
+    <a-button type="primary" @click="handleRedirect()">去详情页</a-button>
   </div>
 </template>
 <script setup>
   import { getCurrentInstance, onMounted } from 'vue';
   import router from '@/router';
+  import { useUserStore } from '@/store/user';
+  const store = useUserStore();
   const {
     appContext: {
       config: { globalProperties: global }
@@ -24,6 +30,7 @@
     });
   };
   onMounted(() => {
+    console.log(store.userInfo);
     global.$api.getxxxList().then(() => {});
   });
 </script>
